@@ -17,7 +17,11 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-### Instalar axios
+### Install axios
 ```
 npm install axios
+```
+### Install fontawesome in vue 3.x
+```
+npm i --save @fortawesome/vue-fontawesome@prerelease
 ```

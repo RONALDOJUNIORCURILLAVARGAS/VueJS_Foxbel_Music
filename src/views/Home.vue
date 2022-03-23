@@ -1,20 +1,32 @@
 <template>
+<div class="all">
   <div class="home">
-    <deezerPlayList msg="INICIO" />
-    
-  </div>
+      <navbar />
+      <deezerPlayList msg="INICIO" />
+      
+    </div>
+    <reproductorPlayList />
+</div>
+  
+  
+
 </template>
 
 <script>
 // @ is an alias to /src
 
-import deezerPlayList from '../components/deezerPlayList.vue'
+import deezerPlayList from '@/components/deezerPlayList.vue'
+import navbar from '@/components/Navbar.vue'
+import reproductorPlayList from '@/components/reproductorPlayList.vue'
 import getAlbum from '@/helpers/deezerOptions'
+import ReproductorPlayList from '../components/reproductorPlayList.vue'
 
 export default {
   name: 'Home',
   components: {
-    deezerPlayList
+    deezerPlayList,
+    navbar,
+    reproductorPlayList,
   },
   created() {
         /* const {id} = this.$route.params
@@ -44,3 +56,15 @@ export default {
 
 }
 </script>
+<style>
+  .all{
+    width: 100%;
+    height: 100vh;
+  }
+  .home{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+  }
+
+</style>
