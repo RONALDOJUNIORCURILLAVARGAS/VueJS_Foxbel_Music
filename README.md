@@ -25,3 +25,6 @@ npm install axios
 ```
 npm i --save @fortawesome/vue-fontawesome@prerelease
 ```
+
+### Solucionar Allow CORS: Access-Control-Allow-Origin para la prueba
+### Install extention for chrome: "Allow CORS: Access-Control-Allow-Origin" 
