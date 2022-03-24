@@ -1,12 +1,16 @@
 <template>
 <div>
     <div class="navbar">
-   <!--  <h1>{{ msg }}</h1> -->
-    <div class="image">
+   <!-- ========== Start Logo en barra ========== -->
+   <div class="image">
         <img class="icon_logo" alt="logo" src="../assets/foxbel-music.png">
     </div>
+   <!-- ========== End Logo en barra ========== -->
+    
+
     <div class="options">
-        <ul class="ul-title-options">
+        <!-- ========== Start Barra de opciones ========== -->
+         <ul class="ul-title-options">
             <li class="option-list">Mi librería  
             </li>
             <ul class="list-sel">
@@ -16,7 +20,6 @@
                 <li class="option-list-sel"><span>Canciones</span></li>
                 <li class="option-list-sel"><span>Estaciones</span></li>
             </ul>
-
             <li class="option-list">Playlist</li>
             <ul class="list-sel">
                 <li class="option-list-sel"><span> Meta!</span></li>
@@ -24,8 +27,9 @@
                 <li class="option-list-sel"><span>Rock 90s</span></li>
                 <li class="option-list-sel"><span>Baladas</span></li>
             </ul>
-
         </ul>
+        <!-- ========== End Barra de opciones ========== -->
+       
     </div>
     
   </div>

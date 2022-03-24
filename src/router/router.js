@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 
 const routes = [
   {
+    //Direcciones implementadas en router
     path: '/',
     name: 'Home',
     component: Home

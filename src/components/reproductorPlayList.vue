@@ -1,5 +1,6 @@
 <template>
   <div class="reproductor">
+      <!-- ========== Start Cancion inicial detalles e imagen ========== -->
       <img :src="songsDefault.imagesrc"  alt="image-reproductor" srcset=""/>
       <div class="details">
           <div class="title">
@@ -11,6 +12,11 @@
               <span>{{ songsDefault.album }}</span>
           </div>
       </div>
+      <!-- ========== End Cancion inicial detalles e imagen ========== -->
+
+
+
+      <!-- ========== Start Reproductor play,pause,next,back ========== -->
       <div class="player">
           
           <div class="content-button">
@@ -31,7 +37,10 @@
           </div>
           
       </div>
-      <div class="sound">
+      <!-- ========== End Reproductor play,pause,next,back ========== -->
+      
+        <!-- ========== Start Barra de control de sonido ========== -->
+        <div class="sound">
           <div class="barra">
             <input type="range" min="0" max="1" v-model="value" step="0.1" id="mislider" >  
           </div>
@@ -41,23 +50,17 @@
           <div class="actividad_sonido" v-else @click="sound">
               <font-awesome-icon icon="volume-xmark" />
           </div>
-          <!-- <audio controls preload="metadata" src="../music/Audio.mp3"></audio> -->
-          
       </div>
+        
+        <!-- ========== End Barra de control de sonido ========== -->
+      
   </div>
 </template>
 
 <script>
 export default {
-    //name: 'reproductorPlayList',
-    computed:{
-        function(){
-            console.log('dfh')
-            console.log(this.songsDefault)
-        }
-    },
+    name: 'reproductorPlayList',
     data(){
-
         return{
             songsDefault:{},
             current:{},
@@ -74,37 +77,37 @@ export default {
         },
     },
     created(){
+        //Inicio de volumen
         this.player.src=this.current.src
-        
         setTimeout(() => {
+        //Objetos asignados de la API recibida
              this.songsDefault.title=this.cancion.title
              this.songsDefault.artist=this.cancion.artist.name
              this.songsDefault.album=this.cancion.album.title
              this.songsDefault.imagesrc=this.cancion.album.cover
              this.songsDefault.audio=this.cancion.preview
+             this.asignar_cancion()
 
-            this.asignar_cancion()
-
-             console.log(this.cancion.album.cover_medium)
-             console.log(this.cancion.preview)
         }, 1000);
 
 
     },
     methods: {
+        //Asignacion de direccion de cancion
         asignar_cancion(){
             this.player.src=this.songsDefault.audio
-            console.log(this.cancion.artist.name)
         },
+        //Reproducir canción
         play(){
-            //const audio = new Audio(sound)
             this.player.play()
             this.isPlaying=true
         },
+        //Pausar canción
         pause(){
             this.player.pause()
             this.isPlaying=false
         },
+        //Cambiar estado de sonido
         sound(){
             if(this.isSound){
                 this.player.volume=0
@@ -116,6 +119,7 @@ export default {
         }
     },
     watch:{
+        //Ejecutar funciones cuando los siguientes valores sufran cambios
         value:function () {
             if(this.isSound){
                 this.player.volume=this.value
@@ -127,9 +131,11 @@ export default {
             }
         }
     },
+    //Ejecutar una vez
     mounted() {
+        //Asignar valor inicial del volumen
         this.player.volume=this.value  
-       // console.log(typeof(this.current))  
+     
     },
   
 }

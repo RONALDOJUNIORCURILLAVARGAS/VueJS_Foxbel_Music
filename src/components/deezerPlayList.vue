@@ -1,47 +1,46 @@
 <template>
   <div class="playlist">
-    <!-- <h1>{{ msg }}</h1>
-     -->
-     <div class="cabecera">
+  
+  <!-- ========== Start Barra de busqueda y usuario ========== -->
+   <div class="cabecera">
        <div class="busqueda">
          <div class="busca">
            <input type="text" placeholder=" Buscar" name="search" id="buscar">
-         <a href="" class="buttom">
-        
+         <a href="" class="buttom">     
           <font-awesome-icon icon="magnifying-glass" />
          </a>
-         </div>
-         
+         </div>     
        </div>
        <div class="usuario">
           <div class="caja-user">
-
               <font-awesome-icon icon="user" class="icon-user"/>
               <a href="">
                 <strong>Francisco M.</strong>
-              </a>
-
-              
-
-
-            
+              </a>      
           </div>
        </div>
      </div>
-     <div class="cuerpo">
+  <!-- ========== End Barra de busqueda y usuario ========== -->
+    
+  <!-- ========== Start Cuerpo de listas de reproduccion y banner ========== -->
+  <div class="cuerpo">
 
-
-       <div class="banner">
+      <!-- ========== Start Banner de canciones principales ========== -->
+      <div class="banner">
 
        </div>
+      <!-- ========== End Banner de canciones principales ========== -->
+       
 
        <div class="resultados">
          <div class="title">
            <strong>Resultados</strong>
          </div>
          <div class="canciones">
+           <!-- ========== Start Carrusel de canciones buscada o recomendadas ========== -->
            <div class="carrusel">
-              <div class="card-song">
+             <!-- ========== Start Tarjetas dentro del carrusel para cada cancion ========== -->
+             <div class="card-song">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
                   <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
@@ -55,7 +54,7 @@
                   <span>Adele</span>
                 </div>                 
               </div>
-              <!-- Cajas dentro del carrusel prueba para consumir del API -->
+             <!-- ========== End Tarjetas dentro del carrusel para cada cancion ========== -->
               <div class="card-song">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
@@ -155,11 +154,15 @@
                 </div>                 
               </div>
            </div>
+           <!-- ========== End Carrusel de canciones buscada o recomendadas ========== -->
+           
            
          </div>
        </div>
 
      </div>
+  <!-- ========== End Cuerpo de listas de reproduccion y banner ========== -->
+     
   </div>
 </template>
 
@@ -308,9 +311,7 @@ export default {
   .card-song img{
     width: 7vw;
     position: absolute;
-  }
-  
-
+  }  
 
   .card-song strong{
     font-family:'Quicksand';
