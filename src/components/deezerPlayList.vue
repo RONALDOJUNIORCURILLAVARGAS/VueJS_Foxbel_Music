@@ -55,11 +55,20 @@
                   <span>Adele</span>
                 </div>                 
               </div>
+              <!-- Cajas dentro del carrusel prueba para consumir del API -->
               <div class="card-song">
-                
-              </div>
-              <div class="card-song">
-                
+                <div class="image-card">
+                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
+                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
+                  <font-awesome-icon icon="play" class="select-song-play" />
+                </div>
+                  
+                <div>
+                  <strong>21</strong>
+                </div>
+                <div>
+                  <span>Adele</span>
+                </div>                 
               </div>
               <div class="card-song">
                 <div class="image-card">
@@ -67,12 +76,83 @@
                   <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
                   <font-awesome-icon icon="play" class="select-song-play" />
                 </div>
+                  
+                <div>
+                  <strong>21</strong>
+                </div>
+                <div>
+                  <span>Adele</span>
+                </div>                 
               </div>
               <div class="card-song">
-                
+                <div class="image-card">
+                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
+                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
+                  <font-awesome-icon icon="play" class="select-song-play" />
+                </div>
+                  
+                <div>
+                  <strong>21</strong>
+                </div>
+                <div>
+                  <span>Adele</span>
+                </div>                 
+              </div>
+             <div class="card-song">
+                <div class="image-card">
+                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
+                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
+                  <font-awesome-icon icon="play" class="select-song-play" />
+                </div>
+                  
+                <div>
+                  <strong>21</strong>
+                </div>
+                <div>
+                  <span>Adele</span>
+                </div>                 
               </div>
               <div class="card-song">
-                
+                <div class="image-card">
+                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
+                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
+                  <font-awesome-icon icon="play" class="select-song-play" />
+                </div>
+                  
+                <div>
+                  <strong>21</strong>
+                </div>
+                <div>
+                  <span>Adele</span>
+                </div>                 
+              </div>
+              <div class="card-song">
+                <div class="image-card">
+                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
+                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
+                  <font-awesome-icon icon="play" class="select-song-play" />
+                </div>
+                  
+                <div>
+                  <strong>21</strong>
+                </div>
+                <div>
+                  <span>Adele</span>
+                </div>                 
+              </div>
+              <div class="card-song">
+                <div class="image-card">
+                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
+                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
+                  <font-awesome-icon icon="play" class="select-song-play" />
+                </div>
+                  
+                <div>
+                  <strong>21</strong>
+                </div>
+                <div>
+                  <span>Adele</span>
+                </div>                 
               </div>
            </div>
            
@@ -97,9 +177,6 @@ export default {
   .playlist{
     width: 80vw;
     height: 90vh;
-    /*
-    Contenido de blanco
-    */
   }
   .cabecera{
     width: 80vw;
@@ -175,16 +252,15 @@ export default {
   .banner{
     width: 80vw;
     height: 30vh;
-    background: rgb(15,200,15);
   }
   .resultados{
     width: 80vw;
     height: 50vh;
   }
+  
   .title{
     width: 76vw;
     height: 2.5vh;
-    background: green;
     font-size: 2vh;
     font-family:'Quicksand';
     padding-left: 4vw;
@@ -210,7 +286,6 @@ export default {
   .card-song{
     width: 7vw;
     height: 9vw;
-    background: blue;
     margin-right: 5rem;
     margin-bottom: 1rem;
     cursor: pointer;

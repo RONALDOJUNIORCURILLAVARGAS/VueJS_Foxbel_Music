@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import sound from '../assets/Audio.mp3'
 export default {
     //name: 'reproductorPlayList',
     computed:{
@@ -66,16 +65,6 @@ export default {
             value:0.25,
             isPlaying:false,
             isSound:true,
-            songs:[
-            {
-                title:'Forbidden Voices',
-                artist:'Bruno Mars',
-                Album:'clamar',
-                src:require('../assets/Audio.mp3')
-            },
-                
-
-            ],
             player:new Audio()
         }
     },
@@ -85,7 +74,6 @@ export default {
         },
     },
     created(){
-        this.current=this.songs[this.index]
         this.player.src=this.current.src
         
         setTimeout(() => {
@@ -106,9 +94,7 @@ export default {
     methods: {
         asignar_cancion(){
             this.player.src=this.songsDefault.audio
-           // this.player=new Audio(this.songsDefault.audio)
             console.log(this.cancion.artist.name)
-
         },
         play(){
             //const audio = new Audio(sound)
@@ -131,7 +117,6 @@ export default {
     },
     watch:{
         value:function () {
-
             if(this.isSound){
                 this.player.volume=this.value
             }
@@ -141,12 +126,10 @@ export default {
                 this.player.volume=this.value
             }
         }
-
     },
     mounted() {
         this.player.volume=this.value  
        // console.log(typeof(this.current))  
-
     },
   
 }
