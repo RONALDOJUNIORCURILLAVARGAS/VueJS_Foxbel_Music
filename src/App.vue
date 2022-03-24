@@ -24,11 +24,12 @@
 }
 body{
   margin: 0px;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 .cuerpo{
   width: 100%;
   height: 90vh;
-   display: flex;
+   /* display: flex; */
 }
 </style>

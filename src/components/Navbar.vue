@@ -50,10 +50,13 @@ export default {
     .image{
         justify-content: center;
         text-align:center;
-        padding: 3rem;
+        padding: 0rem;
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
     }
     .icon_logo{
-        height: 4rem;
+        max-height: 3rem;
+        min-height: 1rem;
     }
 
 /* Mi Librería */

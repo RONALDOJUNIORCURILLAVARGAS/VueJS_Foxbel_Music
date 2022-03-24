@@ -5,7 +5,7 @@
       <deezerPlayList msg="INICIO" />
       
     </div>
-    <reproductorPlayList />
+    <reproductorPlayList :cancion="songsDefault" />
 </div>
   
   
@@ -28,30 +28,31 @@ export default {
     navbar,
     reproductorPlayList,
   },
-  created() {
-        /* const {id} = this.$route.params
-        console.log(id) */
-       // this.id=id
- 
-        this.getPokemon()
-    },
-  methods:{
-    async getPokemon(){
-            try {
-               // const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${ this.id }`).then(r => r.json() )
-               const albumes = await fetch(`https://api.deezer.com/user/2529/playlists`,{
-                 mode:'cors'
-               }).then(r => r.json() )
-                console.log(albumes)
-
-            } catch (error) {
-
-                console.log('No hay nada que hacer aqui no existe ese pokemon')
-            }
-            
-        }
+  data(){
+    return{
+        songsDefault:{type:Object},
+      }
     
   },
+  methods:{
+    async consumirApi(){
+            try {
+               // const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${ this.id }`).then(r => r.json() )
+               this.songsDefault= await fetch(`https://api.deezer.com/track/1522667852`,{
+                 mode:'cors'
+               }).then(r => r.json() )     
+               //console.log(this.songsDefault.album.id)
+            } catch (error) {
+                console.log('No hay nada que hacer aqui no existe ese pokemon')
+            }
+        },
+  },
+   mounted() {
+        this.consumirApi()
+        /* setTimeout(() => {
+          console.log(this.songsDefault)
+        }, 10); */
+    },
 
 
 }

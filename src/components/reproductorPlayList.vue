@@ -1,14 +1,14 @@
 <template>
   <div class="reproductor">
-      <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="image-reproductor" srcset=""/>
+      <img :src="songsDefault.imagesrc"  alt="image-reproductor" srcset=""/>
       <div class="details">
           <div class="title">
-              <span>{{ this.songs[0].title}}</span>
+              <span>{{ songsDefault.title }}</span>
           </div>
           
           <div class="description">
-              <span>{{ this.songs[0].artist}}</span> -
-              <span>{{ this.songs[0].Album}}</span>
+              <span>{{ songsDefault.artist }}</span> -
+              <span>{{ songsDefault.album }}</span>
           </div>
       </div>
       <div class="player">
@@ -50,10 +50,17 @@
 <script>
 import sound from '../assets/Audio.mp3'
 export default {
-    name: 'reproductorPlayList',
+    //name: 'reproductorPlayList',
+    computed:{
+        function(){
+            console.log('dfh')
+            console.log(this.songsDefault)
+        }
+    },
     data(){
 
         return{
+            songsDefault:{},
             current:{},
             index:0,
             value:0.25,
@@ -69,19 +76,40 @@ export default {
                 
 
             ],
-            player:new Audio(sound)
+            player:new Audio()
         }
     },
     props:{
-        cancionReproduciendo: String,
-        
+        cancion:{
+            type:Object,
+        },
     },
     created(){
         this.current=this.songs[this.index]
         this.player.src=this.current.src
+        
+        setTimeout(() => {
+             this.songsDefault.title=this.cancion.title
+             this.songsDefault.artist=this.cancion.artist.name
+             this.songsDefault.album=this.cancion.album.title
+             this.songsDefault.imagesrc=this.cancion.album.cover
+             this.songsDefault.audio=this.cancion.preview
+
+            this.asignar_cancion()
+
+             console.log(this.cancion.album.cover_medium)
+             console.log(this.cancion.preview)
+        }, 1000);
+
+
     },
     methods: {
-        
+        asignar_cancion(){
+            this.player.src=this.songsDefault.audio
+           // this.player=new Audio(this.songsDefault.audio)
+            console.log(this.cancion.artist.name)
+
+        },
         play(){
             //const audio = new Audio(sound)
             this.player.play()
@@ -116,7 +144,9 @@ export default {
 
     },
     mounted() {
-        this.player.volume=this.value
+        this.player.volume=this.value  
+       // console.log(typeof(this.current))  
+
     },
   
 }
