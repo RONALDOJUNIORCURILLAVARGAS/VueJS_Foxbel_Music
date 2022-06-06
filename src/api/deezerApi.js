@@ -1,7 +1,5 @@
 import axios from 'axios'
-
-const deezerApi=axios.create({
-    baseURL: 'https://api.deezer.com',
+const journalApi = axios.create({
+    baseURL:'http://localhost:8080/'
 })
-
-export default deezerApi
+export default journalApi

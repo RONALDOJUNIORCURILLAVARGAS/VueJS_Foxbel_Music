@@ -16,7 +16,7 @@
 import deezerPlayList from '@/components/deezerPlayList.vue'
 import navbar from '@/components/Navbar.vue'
 import reproductorPlayList from '@/components/reproductorPlayList.vue'
-
+import deezerApi from '../api/deezerApi'
 export default {
   name: 'Home',
   components: {
@@ -41,10 +41,20 @@ export default {
                 console.log(error)
             }
         },
+        async getAlbuma(){
+                const {data}=await deezerApi.get(`/track/140421773`)
+                this.songsDefault=data
+                //https://api.deezer.com/artist/9635624/top?limit=3
+                //https://api.deezer.com/artist/9635624
+                console.log(typeof(data))
+                //export const loadEntries= async({commit})=>{
+                //const {data}=await journalApi.get('/entries.json')
+                console.log(data)
+            }
   },
    mounted(){
       //Ejecucion a una vez de la función
-       this.consumirApi()
+      this.getAlbuma()
 
     },
 }
