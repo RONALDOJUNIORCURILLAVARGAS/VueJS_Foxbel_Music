@@ -32,15 +32,23 @@ export default {
   },
   methods:{
     async consumirApi(){
-            try {
-              //Direccion del API 
-               this.songsDefault= await fetch(`https://api.deezer.com/track/1522667852`,{
-                 mode:'cors'
-               }).then(r => r.json())     
+            const axios = require("axios");
+            const options = {
+              method: 'GET',
+              url: 'https://deezerdevs-deezer.p.rapidapi.com/search',
+              params: {q: 'billie'},
+              headers: {
+                'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
+                'X-RapidAPI-Key': 'e2f9d5cdcdmshe3af8e1a48b083cp1b7481jsn160a9a0fa4c6'
+              }
+            };
+            
 
-            } catch (error) {
-                console.log(error)
-            }
+            await axios.request(options).then(function (response) {
+              console.log('dataaaaaa:',response.data);
+            }).catch(function (error) {
+              console.error(error);
+            });
         },
         async getAlbuma(){         
                await deezerApi.get('/track/140421773').then((resp)=>{
@@ -52,6 +60,7 @@ export default {
    created(){
       //Ejecucion a una vez de la función
       this.getAlbuma()
+      this.consumirApi()
     },
 }
 </script>
