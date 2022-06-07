@@ -5,7 +5,21 @@
   </div>
   
 </template>
+<script>
+export default {
+  components: {
+  
+  },
+  methods:{
+    
+  },
 
+  created(){
+    
+  }
+  
+}
+</script>
 <style>
 @font-face {
   font-family: Quicksand;

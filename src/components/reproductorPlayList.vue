@@ -68,7 +68,7 @@ export default {
             value:0.25,
             isPlaying:false,
             isSound:true,
-            player:new Audio()
+            player:new Audio(),
         }
     },
     props:{
@@ -81,6 +81,7 @@ export default {
         this.player.src=this.current.src
         setTimeout(() => {
         //Objetos asignados de la API recibida
+        console.log('cancion',this.cancion)
              this.songsDefault.title=this.cancion.title
              this.songsDefault.artist=this.cancion.artist.name
              this.songsDefault.album=this.cancion.album.title
