@@ -2,7 +2,7 @@
 <div class="all">
   <div class="home">
       <navbar />
-      <deezerPlayList :arresults="groupResults" @selection-track="checkSong($event)"/>
+      <deezerPlayList :arresults="groupResults" @selection-track="checkSong($event)" @search-track="recivetext($event)"/>
       
   </div>
   <!-- Envio de objeto recibido de la API -->
@@ -32,9 +32,18 @@ export default {
       }
   },
   methods:{
+      async recivetext(textsearch){
+        await deezerApi.get(`/search?q=${textsearch}&limit=8`).then((resp)=>{
+            this.groupResults=resp.data.data
+            }).catch(err=>console.log(err))
+        console.log('Esto buscas',textsearch)
+      },
       checkSong(selectsong){
         console.log('checksong',selectsong)
         this.songsDefault=selectsong
+        if(selectsong.title.length>13){
+          this.songsDefault.title=selectsong.title.substr(0,13)+'...'
+        }
         console.log('new song',this.songsDefault)
       },
         async getAlbuma(){         

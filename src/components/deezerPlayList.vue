@@ -5,8 +5,8 @@
    <div class="cabecera">
        <div class="busqueda">
          <div class="busca">
-           <input type="text" placeholder=" Buscar" name="search" id="buscar">
-         <a href="" class="buttom">     
+           <input type="text" v-model="searchText" placeholder="Buscar" name="search" id="buscar">
+         <a class="buttom" @click="$emit('searchTrack',searchText)">     
           <font-awesome-icon icon="magnifying-glass" />
          </a>
          </div>     
@@ -76,6 +76,7 @@ export default {
           type:Array,
           default:[]
           },
+          searchText:null,
       }
   },
   props: {
@@ -89,6 +90,7 @@ export default {
   },
   methods : {
   // We can add our functions here
+    
     cambio(){
       console.log('nuevo')
       let arr=[]
@@ -100,17 +102,23 @@ export default {
           preview:this.arresults[item].preview,
           image:this.arresults[item].album.cover,
         })
+        if(this.arresults[item].title_short.length>13){
+          arr[item].title=this.arresults[item].title_short.substr(0,13)+'...'
+        }
         }
         console.log('termin',arr)
         this.listsongs=arr
       
-    },
+    }
   },
   watch:{
     arresults(){
       console.log('cambio')
       this.cambio()
-    }
+    },/* 
+    searchText(){
+      console.log(this.searchText)
+    } */
   }
 }
 </script>
@@ -164,6 +172,7 @@ export default {
     float: right;
     margin-right: 10px;
     margin-top: 2px;
+    cursor: pointer;
   }
   .usuario{
     width: 30vw;
