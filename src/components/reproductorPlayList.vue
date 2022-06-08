@@ -80,12 +80,6 @@ export default {
         //Inicio de volumen
         this.player.src=this.current.src
         setTimeout(() => {
-        //Objetos asignados de la API recibida
-             this.songsDefault.title=this.cancion.title
-             this.songsDefault.artist=this.cancion.artist.name
-             this.songsDefault.album=this.cancion.album.title
-             this.songsDefault.imagesrc=this.cancion.album.cover
-             this.songsDefault.audio=this.cancion.preview
              this.asignar_cancion()
         }, 1000);
 
@@ -94,6 +88,11 @@ export default {
     methods: {
         //Asignacion de direccion de cancion
         asignar_cancion(){
+            this.songsDefault.title=this.cancion.title
+            this.songsDefault.artist=this.cancion.artist.name
+            this.songsDefault.album=this.cancion.album.title
+            this.songsDefault.imagesrc=this.cancion.album.cover
+            this.songsDefault.audio=this.cancion.preview
             this.player.src=this.songsDefault.audio
         },
         //Reproducir canción
@@ -119,6 +118,20 @@ export default {
     },
     watch:{
         //Ejecutar funciones cuando los siguientes valores sufran cambios
+        cancion(){
+            this.pause()
+            console.log('elemn',this.songsDefault)
+            console.log('cambio',this.cancion.title)
+            this.songsDefault.id=this.cancion.id
+            this.songsDefault.title=this.cancion.title
+            this.songsDefault.artist=this.cancion.artist
+            this.songsDefault.album=this.cancion.title
+            this.songsDefault.imagesrc=this.cancion.image
+            this.songsDefault.audio=this.cancion.preview
+            this.player.src=this.songsDefault.audio
+            this.play()
+            //this.asignar_cancion()
+        },
         value:function () {
             if(this.isSound){
                 this.player.volume=this.value

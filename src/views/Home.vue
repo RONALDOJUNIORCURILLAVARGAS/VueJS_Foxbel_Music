@@ -2,11 +2,11 @@
 <div class="all">
   <div class="home">
       <navbar />
-      <deezerPlayList :arresults="this.groupResults" />
+      <deezerPlayList :arresults="groupResults" @selection-track="checkSong($event)"/>
       
   </div>
   <!-- Envio de objeto recibido de la API -->
-    <reproductorPlayList :cancion="this.songsDefault" />
+    <reproductorPlayList :cancion="songsDefault" />
 </div>
   
 </template>
@@ -32,6 +32,11 @@ export default {
       }
   },
   methods:{
+      checkSong(selectsong){
+        console.log('checksong',selectsong)
+        this.songsDefault=selectsong
+        console.log('new song',this.songsDefault)
+      },
         async getAlbuma(){         
                await deezerApi.get('/track/140421773').then((resp)=>{
                  this.songsDefault=resp.data
@@ -43,8 +48,6 @@ export default {
         async SearchResult(){
           await deezerApi.get('/search?q=eminem&limit=8').then((resp)=>{
             this.groupResults=resp.data.data
-            console.log('group resul',this.groupResults)
-            console.log([...this.groupResults])
             }).catch(err=>console.log(err))
         },
   },

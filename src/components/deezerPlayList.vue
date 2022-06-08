@@ -40,7 +40,7 @@
            <!-- ========== Start Carrusel de canciones buscada o recomendadas ========== -->
            <div class="carrusel">
              <!-- ========== Start Tarjetas dentro del carrusel para cada cancion ========== -->
-             <div class="card-song" v-for="item in listsongs" :key="item.id">
+             <div class="card-song" v-for="item in listsongs" :key="item.id" @click="$emit('selectionTrack',item)">
                 <div class="image-card">
                   <img :src="item.image" alt="">
                   <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
