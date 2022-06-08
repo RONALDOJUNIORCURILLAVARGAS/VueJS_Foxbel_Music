@@ -81,14 +81,12 @@ export default {
         this.player.src=this.current.src
         setTimeout(() => {
         //Objetos asignados de la API recibida
-        console.log('cancion',this.cancion)
              this.songsDefault.title=this.cancion.title
              this.songsDefault.artist=this.cancion.artist.name
              this.songsDefault.album=this.cancion.album.title
              this.songsDefault.imagesrc=this.cancion.album.cover
              this.songsDefault.audio=this.cancion.preview
              this.asignar_cancion()
-
         }, 1000);
 
 

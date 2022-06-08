@@ -2,7 +2,7 @@
 <div class="all">
   <div class="home">
       <navbar />
-      <deezerPlayList />
+      <deezerPlayList :arresults="this.groupResults" />
       
   </div>
   <!-- Envio de objeto recibido de la API -->
@@ -28,39 +28,31 @@ export default {
   data(){
     return{
         songsDefault:{type:Object},
+        groupResults:{type:Object},
       }
   },
   methods:{
-    async consumirApi(){
-            const axios = require("axios");
-            const options = {
-              method: 'GET',
-              url: 'https://deezerdevs-deezer.p.rapidapi.com/search',
-              params: {q: 'billie'},
-              headers: {
-                'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-                'X-RapidAPI-Key': 'e2f9d5cdcdmshe3af8e1a48b083cp1b7481jsn160a9a0fa4c6'
-              }
-            };
-            
-
-            await axios.request(options).then(function (response) {
-              console.log('dataaaaaa:',response.data);
-            }).catch(function (error) {
-              console.error(error);
-            });
-        },
         async getAlbuma(){         
                await deezerApi.get('/track/140421773').then((resp)=>{
                  this.songsDefault=resp.data
-                 console.log('data',resp.data)
+                 if(resp.data.title.length>13){
+                   this.songsDefault.title=resp.data.title.substr(0,13)+'...'
+                 }
                }).catch(err=>console.log(err))
-            }
+            },
+        async SearchResult(){
+          await deezerApi.get('/search?q=eminem&limit=8').then((resp)=>{
+            this.groupResults=resp.data.data
+            console.log('group resul',this.groupResults)
+            }).catch(err=>console.log(err))
+        },
   },
    created(){
       //Ejecucion a una vez de la función
+      this.SearchResult()
       this.getAlbuma()
-      this.consumirApi()
+
+     
     },
 }
 </script>

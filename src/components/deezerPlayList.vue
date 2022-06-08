@@ -40,18 +40,17 @@
            <!-- ========== Start Carrusel de canciones buscada o recomendadas ========== -->
            <div class="carrusel">
              <!-- ========== Start Tarjetas dentro del carrusel para cada cancion ========== -->
-             <div class="card-song">
+             <div class="card-song" v-for="item in this.listsongs" :key="item.id">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
                   <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
                   <font-awesome-icon icon="play" class="select-song-play" />
                 </div>
-                  
                 <div>
-                  <strong>21</strong>
+                  <strong>{{item.title_short}}</strong>
                 </div>
                 <div>
-                  <span>Adele</span>
+                  <span>agsd</span>
                 </div>                 
               </div>
              <!-- ========== End Tarjetas dentro del carrusel para cada cancion ========== -->
@@ -69,6 +68,7 @@
                   <span>Adele</span>
                 </div>                 
               </div>
+
               <div class="card-song">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
@@ -83,6 +83,7 @@
                   <span>Adele</span>
                 </div>                 
               </div>
+
               <div class="card-song">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
@@ -97,6 +98,7 @@
                   <span>Adele</span>
                 </div>                 
               </div>
+
              <div class="card-song">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
@@ -111,6 +113,7 @@
                   <span>Adele</span>
                 </div>                 
               </div>
+
               <div class="card-song">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
@@ -125,6 +128,7 @@
                   <span>Adele</span>
                 </div>                 
               </div>
+
               <div class="card-song">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
@@ -139,6 +143,7 @@
                   <span>Adele</span>
                 </div>                 
               </div>
+
               <div class="card-song">
                 <div class="image-card">
                   <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
@@ -169,8 +174,34 @@
 <script>
 export default {
   name: 'deezerPlayList',
+  data(){
+    return{
+        listsongs:{type:Object},
+      }
+  },
   props: {
-    msg: String
+    msg: String,
+    arresults:{
+            type:Object,
+        },
+  },
+  created(){
+    console.log('first',this.arresults)
+  },
+  methods : {
+  // We can add our functions here
+    cambio(){
+      console.log('nuevo')
+      this.listsongs=this.arresults
+      console.log('item',this.listsongs[1].album.cover)
+    },
+  },
+  watch:{
+    arresults(){
+      console.log('cambio')
+      console.log('first',this.arresults)
+      this.cambio()
+    }
   }
 }
 </script>
