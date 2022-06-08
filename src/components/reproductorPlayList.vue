@@ -79,19 +79,21 @@ export default {
     created(){
         //Inicio de volumen
         this.player.src=this.current.src
-        setTimeout(() => {
+        this.asignar_cancion()
+        /* setTimeout(() => {
              this.asignar_cancion()
-        }, 1000);
+        }, 1000); */
 
 
     },
     methods: {
         //Asignacion de direccion de cancion
         asignar_cancion(){
+            this.songsDefault.id=this.cancion.id
             this.songsDefault.title=this.cancion.title
-            this.songsDefault.artist=this.cancion.artist.name
-            this.songsDefault.album=this.cancion.album.title
-            this.songsDefault.imagesrc=this.cancion.album.cover
+            this.songsDefault.artist=this.cancion.artist
+            this.songsDefault.album=this.cancion.title
+            this.songsDefault.imagesrc=this.cancion.image
             this.songsDefault.audio=this.cancion.preview
             this.player.src=this.songsDefault.audio
         },
@@ -118,18 +120,20 @@ export default {
     },
     watch:{
         //Ejecutar funciones cuando los siguientes valores sufran cambios
-        cancion(){
+        cancion(newValue, oldValue){
+            console.log('nerw',newValue)
+            console.log('old',oldValue)
+            console.log('oldf',Object.keys(oldValue).length)
             this.pause()
-            console.log('elemn',this.songsDefault)
-            console.log('cambio',this.cancion.title)
-            this.songsDefault.id=this.cancion.id
+            this.asignar_cancion()
+            Object.keys(oldValue).length==1?this.pause():this.play()
+            /* this.songsDefault.id=this.cancion.id
             this.songsDefault.title=this.cancion.title
             this.songsDefault.artist=this.cancion.artist
             this.songsDefault.album=this.cancion.title
             this.songsDefault.imagesrc=this.cancion.image
             this.songsDefault.audio=this.cancion.preview
-            this.player.src=this.songsDefault.audio
-            this.play()
+            this.player.src=this.songsDefault.audio */
             //this.asignar_cancion()
         },
         value:function () {

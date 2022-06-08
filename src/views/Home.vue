@@ -39,9 +39,17 @@ export default {
       },
         async getAlbuma(){         
                await deezerApi.get('/track/140421773').then((resp)=>{
-                 this.songsDefault=resp.data
-                 if(resp.data.title.length>13){
-                   this.songsDefault.title=resp.data.title.substr(0,13)+'...'
+                 let arr={
+                  id:resp.data.id,
+                  artist:resp.data.artist.name,
+                  title:resp.data.title_short,
+                  preview:resp.data.preview,
+                  image:resp.data.album.cover,
+                }
+                console.log('rrrrrr',arr)
+                 this.songsDefault=arr
+                 if(arr.title.length>13){
+                   this.songsDefault.title=arr.title.substr(0,13)+'...'
                  }
                }).catch(err=>console.log(err))
             },
