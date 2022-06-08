@@ -98,8 +98,7 @@ export default {
           artist:this.arresults[item].artist.name,
           title:this.arresults[item].title_short,
           preview:this.arresults[item].preview,
-          image:this.arresults[item].album.cover_small,
-
+          image:this.arresults[item].album.cover,
         })
         }
         console.log('termin',arr)
