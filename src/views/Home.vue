@@ -44,6 +44,7 @@ export default {
           await deezerApi.get('/search?q=eminem&limit=8').then((resp)=>{
             this.groupResults=resp.data.data
             console.log('group resul',this.groupResults)
+            console.log([...this.groupResults])
             }).catch(err=>console.log(err))
         },
   },

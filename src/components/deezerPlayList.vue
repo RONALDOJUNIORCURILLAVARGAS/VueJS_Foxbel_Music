@@ -40,124 +40,20 @@
            <!-- ========== Start Carrusel de canciones buscada o recomendadas ========== -->
            <div class="carrusel">
              <!-- ========== Start Tarjetas dentro del carrusel para cada cancion ========== -->
-             <div class="card-song" v-for="item in this.listsongs" :key="item.id">
+             <div class="card-song" v-for="item in listsongs" :key="item.id">
                 <div class="image-card">
-                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
+                  <img :src="item.image" alt="">
                   <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
                   <font-awesome-icon icon="play" class="select-song-play" />
                 </div>
                 <div>
-                  <strong>{{item.title_short}}</strong>
+                  <strong>{{item.title}}</strong>
                 </div>
                 <div>
-                  <span>agsd</span>
+                  <span>{{item.artist}}</span>
                 </div>                 
               </div>
              <!-- ========== End Tarjetas dentro del carrusel para cada cancion ========== -->
-              <div class="card-song">
-                <div class="image-card">
-                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
-                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
-                  <font-awesome-icon icon="play" class="select-song-play" />
-                </div>
-                  
-                <div>
-                  <strong>21</strong>
-                </div>
-                <div>
-                  <span>Adele</span>
-                </div>                 
-              </div>
-
-              <div class="card-song">
-                <div class="image-card">
-                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
-                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
-                  <font-awesome-icon icon="play" class="select-song-play" />
-                </div>
-                  
-                <div>
-                  <strong>21</strong>
-                </div>
-                <div>
-                  <span>Adele</span>
-                </div>                 
-              </div>
-
-              <div class="card-song">
-                <div class="image-card">
-                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
-                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
-                  <font-awesome-icon icon="play" class="select-song-play" />
-                </div>
-                  
-                <div>
-                  <strong>21</strong>
-                </div>
-                <div>
-                  <span>Adele</span>
-                </div>                 
-              </div>
-
-             <div class="card-song">
-                <div class="image-card">
-                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
-                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
-                  <font-awesome-icon icon="play" class="select-song-play" />
-                </div>
-                  
-                <div>
-                  <strong>21</strong>
-                </div>
-                <div>
-                  <span>Adele</span>
-                </div>                 
-              </div>
-
-              <div class="card-song">
-                <div class="image-card">
-                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
-                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
-                  <font-awesome-icon icon="play" class="select-song-play" />
-                </div>
-                  
-                <div>
-                  <strong>21</strong>
-                </div>
-                <div>
-                  <span>Adele</span>
-                </div>                 
-              </div>
-
-              <div class="card-song">
-                <div class="image-card">
-                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
-                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
-                  <font-awesome-icon icon="play" class="select-song-play" />
-                </div>
-                  
-                <div>
-                  <strong>21</strong>
-                </div>
-                <div>
-                  <span>Adele</span>
-                </div>                 
-              </div>
-
-              <div class="card-song">
-                <div class="image-card">
-                  <img src="https://m.media-amazon.com/images/I/61jNfu1D+HL._SY355_.jpg" alt="">
-                  <font-awesome-icon icon="ellipsis-vertical" class="select-option-song" />
-                  <font-awesome-icon icon="play" class="select-song-play" />
-                </div>
-                  
-                <div>
-                  <strong>21</strong>
-                </div>
-                <div>
-                  <span>Adele</span>
-                </div>                 
-              </div>
            </div>
            <!-- ========== End Carrusel de canciones buscada o recomendadas ========== -->
            
@@ -176,7 +72,10 @@ export default {
   name: 'deezerPlayList',
   data(){
     return{
-        listsongs:{type:Object},
+        listsongs:{
+          type:Array,
+          default:[]
+          },
       }
   },
   props: {
@@ -192,14 +91,25 @@ export default {
   // We can add our functions here
     cambio(){
       console.log('nuevo')
-      this.listsongs=this.arresults
-      console.log('item',this.listsongs[1].album.cover)
+      let arr=[]
+      for (let item in this.arresults) {
+        arr.push({
+          id:this.arresults[item].id,
+          artist:this.arresults[item].artist.name,
+          title:this.arresults[item].title_short,
+          preview:this.arresults[item].preview,
+          image:this.arresults[item].album.cover_small,
+
+        })
+        }
+        console.log('termin',arr)
+        this.listsongs=arr
+      
     },
   },
   watch:{
     arresults(){
       console.log('cambio')
-      console.log('first',this.arresults)
       this.cambio()
     }
   }
@@ -346,7 +256,7 @@ export default {
 
   .card-song strong{
     font-family:'Quicksand';
-    font-size:20px;
+    font-size:13px;
     float: left;
     margin-top: 7vw;
     position:absolute;
@@ -355,7 +265,7 @@ export default {
     font-family:'Quicksand-light';
     margin-top: 8vw;
     float: left;
-    font-size: 18px;
+    font-size: 14px;
     position:absolute;
   }
   .select-song-play{
