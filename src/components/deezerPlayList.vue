@@ -36,7 +36,7 @@
          <div class="title">
            <strong>Resultados</strong>
          </div>
-         <div class="canciones">
+         <div class="canciones" v-if="listsongs">
            <!-- ========== Start Carrusel de canciones buscada o recomendadas ========== -->
            <div class="carrusel">
              <!-- ========== Start Tarjetas dentro del carrusel para cada cancion ========== -->
@@ -59,6 +59,7 @@
            
            
          </div>
+         <div class="row h-75 w-100 bg-primary mt-4" v-if="selecoption"></div>
        </div>
 
      </div>
@@ -77,6 +78,8 @@ export default {
           default:[]
           },
           searchText:null,
+          selecoption:null
+
       }
   },
   props: {
@@ -84,6 +87,10 @@ export default {
     arresults:{
             type:Object,
         },
+    optionresults:{
+      type:Object,
+      default:null,
+    }
   },
   created(){
     console.log('first',this.arresults)
@@ -119,6 +126,12 @@ export default {
     searchText(){
       console.log(this.searchText)
     } */
+    optionresults(newoption, oldoption){
+      console.log('new ',newoption)
+      console.log('old ',oldoption)
+      this.listsongs=null
+      this.selecoption=newoption
+    },
   }
 }
 </script>

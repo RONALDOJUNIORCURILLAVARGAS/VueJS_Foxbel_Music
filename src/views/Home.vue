@@ -1,8 +1,8 @@
 <template>
 <div class="all">
   <div class="home">
-      <navbar />
-      <deezerPlayList :arresults="groupResults" @selection-track="checkSong($event)" @search-track="recivetext($event)"/>
+      <navbar @selection-option="GetOption($event)" />
+      <deezerPlayList :optionresults="optionResult"  :arresults="groupResults" @selection-track="checkSong($event)" @search-track="recivetext($event)"/>
       
   </div>
   <!-- Envio de objeto recibido de la API -->
@@ -29,22 +29,31 @@ export default {
     return{
         songsDefault:{type:Object},
         groupResults:{type:Object},
+        optionResult:{type:Object},
       }
   },
   methods:{
+      async GetOption(GetUrl){
+        console.log('get',GetUrl)
+        this.optionResult={'data':'prueba','apellido':'ninguno'}
+
+        if(GetUrl=='Home'){
+          this.SearchResult()
+          this.getAlbuma()
+          this.optionResult=null
+        }
+
+      },
       async recivetext(textsearch){
         await deezerApi.get(`/search?q=${textsearch}&limit=8`).then((resp)=>{
             this.groupResults=resp.data.data
             }).catch(err=>console.log(err))
-        console.log('Esto buscas',textsearch)
       },
       checkSong(selectsong){
-        console.log('checksong',selectsong)
         this.songsDefault=selectsong
         if(selectsong.title.length>13){
           this.songsDefault.title=selectsong.title.substr(0,13)+'...'
         }
-        console.log('new song',this.songsDefault)
       },
         async getAlbuma(){         
                await deezerApi.get('/track/140421773').then((resp)=>{
@@ -55,7 +64,6 @@ export default {
                   preview:resp.data.preview,
                   image:resp.data.album.cover,
                 }
-                console.log('rrrrrr',arr)
                  this.songsDefault=arr
                  if(arr.title.length>13){
                    this.songsDefault.title=arr.title.substr(0,13)+'...'

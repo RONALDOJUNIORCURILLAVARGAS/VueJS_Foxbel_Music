@@ -2,7 +2,7 @@
 <div>
     <div class="navbar">
    <!-- ========== Start Logo en barra ========== -->
-   <div class="image">
+   <div class="image mx-5" style="cursor:pointer;" @click="$emit('selectionOption','Home')">
         <img class="icon_logo" alt="logo" src="../assets/foxbel-music.png">
     </div>
    <!-- ========== End Logo en barra ========== -->
@@ -14,9 +14,9 @@
             <li class="option-list">Mi librería  
             </li>
             <ul class="list-sel">
-                <li class="option-list-sel"><span>Recientes</span> </li>
+                <li class="option-list-sel" ><span>Recientes</span> </li>
                 <li class="option-list-sel"><span>Artistas</span> </li>
-                <li class="option-list-sel"><span>Álbums</span> </li>
+                <li class="option-list-sel" @click="$emit('selectionOption','album')"><span>Álbums</span> </li>
                 <li class="option-list-sel"><span>Canciones</span></li>
                 <li class="option-list-sel"><span>Estaciones</span></li>
             </ul>
